@@ -1,6 +1,6 @@
 # Pseudo-Labeling for Kernel Ridge Regression under Covariate Shift
 
-Paper: (https://arxiv.org/abs/2302.10160).
+Paper: Wang, K., 2026. Pseudo-Labeling for Kernel Ridge Regression under Covariate Shift. The Annals of Statistics, 54(1), pp.252-276. (https://arxiv.org/abs/2302.10160).
 
 
 ## Demonstration
@@ -32,10 +32,14 @@ To reproduce the numerical results in Section 5.2, please refer to `experiment.i
 
 ## Citation
 ```
-@article{wang2023,
-  title={Pseudo-Labeling for Kernel Ridge Regression under Covariate Shift},
+@article{Wang26,
+  title={Pseudo-labeling for kernel ridge regression under covariate shift},
   author={Wang, Kaizheng},
-  journal={arXiv preprint arXiv:2302.10160},
-  year={2023}
+  journal={The Annals of Statistics},
+  volume={54},
+  number={1},
+  pages={252--276},
+  year={2026},
+  publisher={Institute of Mathematical Statistics}
 }
 ```
