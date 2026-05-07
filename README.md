@@ -2,6 +2,11 @@
 
 This repository focuses on our new comparison experiments under covariate shift for kernel ridge regression.
 
+## Attribution
+
+This work is developed on top of the original codebase:
+- https://github.com/kw2934/krr
+
 ## What We Compare
 
 We compare multiple model-selection / reweighting strategies under source-target distribution shift, including:
