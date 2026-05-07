@@ -1,45 +1,43 @@
-# Pseudo-Labeling for Kernel Ridge Regression under Covariate Shift
+# Covariate-Shift KRR Comparison Notes
 
-Paper: Wang, K., 2026. Pseudo-Labeling for Kernel Ridge Regression under Covariate Shift. The Annals of Statistics, 54(1), pp.252-276. (https://arxiv.org/abs/2302.10160).
+This repository focuses on our new comparison experiments under covariate shift for kernel ridge regression.
 
+## What We Compare
 
-## Demonstration
+We compare multiple model-selection / reweighting strategies under source-target distribution shift, including:
+- Source-only validation (naive baseline)
+- Pseudo-label based validation
+- Oracle target validation (reference)
+- Importance-weighted and truncated importance-weighted variants
 
-See `demo.ipynb` for the simulation experiment in Section 1. 
-- Feature space: $[0, 1]$.
-- Response model: $y|x \sim N( f^\*(x) , \sigma^2 )$ with $f^\* (x) = \cos(2\pi x) - 1$ and $\sigma = 1$.
-- Source covariate distribution: $\frac{B}{B + 1} \mathcal{U} [0, 1/2] + \frac{1}{B + 1} \mathcal{U} [1/2, 1]$ with $B = 5$.
-- Target covariate distribution: $\frac{1}{B + 1} \mathcal{U} [0, 1/2] + \frac{B}{B + 1} \mathcal{U} [1/2, 1]$ with $B = 5$.
-- Samples sizes: 500 (source, labeled) and 500 (target, unlabeled).
-- Kernel: first-order Sobolev kernel $K(z, w) = \min \lbrace z , w \rbrace $.
+## Data Generation Used in Our Experiments
 
-We run kernel ridge regression on half of the source data with different penalty parameters to get a collection of candidate models. Then, we compare model selection methods based on different validation datasets.
-- Proposed method (red): target data with pseudo-labels;
-- Oracle method (cyan): target data with noiseless responses;
-- Naive method (blue): the held-out half of source data.
-  
-We also visualize the imputation model for pseudo-label generation (pink).
+We use the project-aligned 1D setup:
+- Feature space: `x in [0, 1]`
+- True regression function: `f*(x) = cos(2*pi*x) - 1`
+- Source covariate distribution:
+  - `B/(B+1) * U[0, 1/2] + 1/(B+1) * U[1/2, 1]`
+- Target covariate distribution:
+  - `1/(B+1) * U[0, 1/2] + B/(B+1) * U[1/2, 1]`
+- Labeled source response model: `y = f*(x) + noise`
 
-<p align="center">
-    <img src="demo.png" alt="Demonstration" width="500" height="400" />
-</p>
+## Files
 
+- `KRR-CS-note-project-data.ipynb`
+  - Main note notebook aligned with the above source/target data-generation process.
+- `KRR-CS-compare-three-methods.ipynb`
+  - Additional side-by-side comparison notebook.
+- `myexample.ipynb`
+  - Extra exploratory runs.
+- `l2norm_imgs/`
+  - Exported figures for covariate-shift fit comparison and L2-risk histograms.
 
-## The experiment in Section 5.2
+## Quick Run
 
-To reproduce the numerical results in Section 5.2, please refer to `experiment.ipynb`. The outcomes are stored in the compressed folder named `results.zip`. See `summary.ipynb` for statistical analysis and visualization.
+Open and run in order:
+1. `KRR-CS-note-project-data.ipynb`
+2. `KRR-CS-compare-three-methods.ipynb`
 
+## License
 
-## Citation
-```
-@article{Wang26,
-  title={Pseudo-labeling for kernel ridge regression under covariate shift},
-  author={Wang, Kaizheng},
-  journal={The Annals of Statistics},
-  volume={54},
-  number={1},
-  pages={252--276},
-  year={2026},
-  publisher={Institute of Mathematical Statistics}
-}
-```
+MIT (see `LICENSE`).
